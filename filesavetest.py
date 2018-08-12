@@ -84,7 +84,7 @@ async def on_message(message):
 
 
 	if message.content[:6].lower() == "!save ":
-		await save_data(str(message.content[6:]))
+		await save_data(message.content[6:])
 
 
 
