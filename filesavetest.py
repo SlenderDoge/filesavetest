@@ -41,6 +41,8 @@ async def save_data(data_to_save):
 
 	message_object = await get_latest_bot_message(storage_channel_object)
 
+	data_to_save = json.dumps(data_to_save)
+	
 	if message_object == None:
 		await bot.send_message(storage_channel_object, data_to_save)
 	else:
@@ -57,12 +59,13 @@ async def load_data():
 	storage_channel_object = storage_server_object.get_channel(storage_channel_id)
 
 	message_object = await get_latest_bot_message(storage_channel_object)
-
+	
 	if message_object == None:
 		return None
 	else:
-		return message_object.content
-
+		loaded_data = json.loads(message_object.content)
+		return loaded_data
+		
 
 
 @bot.event
